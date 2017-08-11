@@ -20,6 +20,10 @@ public abstract class Player{
 			else {return false;}
 	}
 	
+	public void drawCard(Stack<Card> drawPile){
+		this.hand.add(drawPile.pop());
+	}
+	
 	
 	/* play a card  */
 	public abstract boolean play(DiscardPile       discardPile, 
