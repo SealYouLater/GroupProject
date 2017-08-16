@@ -42,15 +42,10 @@ public class ExtraCardPlayer extends Player{
 			}
 		}
 		
-		//middle step if a valid power card was found in the above for-each loop then play the card, remove it from the hand, and return the function true
-		if(hasPower && validPlay && validCardLocation != -1){
-			discardPile.add(this.hand.remove(validCardLocation));
-		}
 		
 		
-		
-		//continue drawing cards from the drawPile and appending them to hand until a power card that is able to be played is drawn
-		while(!hasPower || !validPlay){
+		//continue drawing cards from the drawPile and appending them to hand until a power card that is able to be played is drawn or if the next player only has 1 card remaining
+		while(!hasPower || !validPlay || players.get(1).getSizeOfHand() == 1){
 			Card newCard = drawPile.pop();
 			boolean isDrawPowerCard = isPowerCard(newCard);
 			this.hand.add(newCard);
@@ -66,12 +61,12 @@ public class ExtraCardPlayer extends Player{
 		//Since the above loop does not stop drawing until a valid power card is drawn, the card in the last hand position will be valid and a power card
 		//now we play that card by removing the card at hand.get(hand.size()-1) which is the last card in our hand
 		
-		if(hasPower && validPlay){
+		if(hasPower && validPlay && players.get(1).getSizeOfHand()==1){
 			discardPile.add(this.hand.remove(this.hand.size()-1));
 			return true;
 		}	
-		//if under some circumstance a valid powercard cannot be drawn, iterate through the hand and play the first valid card
-		else if(!hasPower){
+		//if under some circumstance a valid powercard cannot be drawn, or the next player has more than 1 card remaining 
+		else if(!hasPower || players.get(1).getSizeOfHand() != 1){
 			for(Card c : hand){
 				if(isValid(discardPile, c)){
 					discardPile.add(c);
