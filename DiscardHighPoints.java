@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.Arrays;
 
 public class DiscardHighPoints extends Player {
   
@@ -27,6 +28,9 @@ public class DiscardHighPoints extends Player {
  }
 }
 
+ public DiscardHighPoints(Card[] cards){
+   this.hand = new ArrayList<Card>(Arrays.asList(cards));
+ }
   /**
    * find a card to be played based on the DiscardHighPoints play strategy
    * @param lastDiscard the topmost card of the discard pile
