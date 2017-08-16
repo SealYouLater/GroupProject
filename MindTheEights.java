@@ -14,6 +14,15 @@ public class MindTheEights extends Player
     Player lowestHand = null;
     int powerCardNumber = 0;
     int eights = 0;
+    if (discardPile.top().getSuit() == "None" && discardPile.top().getRank() == -1 ){
+      discardPile.add(this.hand.remove(0));
+      if( this.hand.size() == 0 )
+      {
+        return true;
+      }
+      return false;
+    }
+    
     //Finds player with the least amount of cards in hand
     for (int j = 0; j < players.size(); j++)
     {
