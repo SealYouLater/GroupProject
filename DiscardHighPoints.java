@@ -4,27 +4,27 @@ import java.util.Stack;
 public class DiscardHighPoints extends Player {
   
  public int getPointValue(Card card) {
-	String rank = card.getRankString();
-	String suite = card.getSuit();
-	if (rank.equals("8")){
-		return 50;
-	}
-	else if (rank.equals("2") || rank.equals("4")){
-		return 25;
-	}
-	else if (rank.equals("7")){
-		return 20;
-	}
-	else if ((rank.equals("Jack")) || (rank.equals("Queen")) || (rank.equals("King"))){
-	return 10;
-	}
-	else if (rank.equals("Ace")){
-	return 1;
-	}
-	else{ //return the face value
-		return card.getRank();
+ String rank = card.getRankString();
+ String suite = card.getSuit();
+ if (rank.equals("8")){
+  return 50;
+ }
+ else if (rank.equals("2") || rank.equals("4")){
+  return 25;
+ }
+ else if (rank.equals("7")){
+  return 20;
+ }
+ else if ((rank.equals("Jack")) || (rank.equals("Queen")) || (rank.equals("King"))){
+ return 10;
+ }
+ else if (rank.equals("Ace")){
+ return 1;
+ }
+ else{ //return the face value
+  return card.getRank();
 
-	}
+ }
 }
 
   /**
@@ -50,10 +50,10 @@ public class DiscardHighPoints extends Player {
           return thisCard;
         }
         //set first valid card to highPointCard to start
-		if(highPointCard == null) {
-			highPointCard = thisCard;
-		}
-		// check if it has a higher point value than current highPointCard
+  if(highPointCard == null) {
+   highPointCard = thisCard;
+  }
+  // check if it has a higher point value than current highPointCard
         if(getPointValue(thisCard) > getPointValue(highPointCard)){
           highPointCard = thisCard;
         }
@@ -79,22 +79,22 @@ public class DiscardHighPoints extends Player {
       }
     }
     else {
-		//take cards from the draw pile until valid (but could keep drawing) or drawPile empty
+  //take cards from the draw pile until valid (but could keep drawing) or drawPile empty
         //if pile empty, skip turn (return false)
         //if this card is playable, play it right away
-		while(true){
-			if(drawPile.empty()){
-				break;
-			}
-			else {
-				toPlay = drawPile.pop();
-				hand.add(toPlay);
-				if(isValid(discardPile, toPlay)) {
-					hand.remove(toPlay);
-					discardPile.add(toPlay);
-				}
-			}
-		}
+  while(true){
+   if(drawPile.empty()){
+    break;
+   }
+   else {
+    toPlay = drawPile.pop();
+    hand.add(toPlay);
+    if(isValid(discardPile, toPlay)) {
+     hand.remove(toPlay);
+     discardPile.add(toPlay);
+    }
+   }
+  }
 
     }
     
