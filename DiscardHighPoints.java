@@ -31,6 +31,8 @@ public class DiscardHighPoints extends Player {
  public DiscardHighPoints(Card[] cards){
    this.hand = new ArrayList<Card>(Arrays.asList(cards));
  }
+ 
+
   /**
    * find a card to be played based on the DiscardHighPoints play strategy
    * @param lastDiscard the topmost card of the discard pile
@@ -44,7 +46,7 @@ public class DiscardHighPoints extends Player {
     for(Card thisCard : hand) {
       //LOGIC: is nextCard valid? need to check if suit matches, or rank matches
       //if not valid, continue the loop. remember 8 is always valid
-      if(isValid(pile,lastDiscard)){
+      if(isValid(pile,thisCard)){
         //the card is valid to be played
         
         //if suit is diff and it is a high point card, it qualifies as a highPointSuitChange card
