@@ -3,6 +3,30 @@ import java.util.Stack;
 
 public class DiscardHighPoints extends Player {
   
+ public int getPointValue(Card card) {
+	String rank = card.getRankString();
+	String suite = card.getSuit();
+	if (rank.equals("8")){
+		return 50;
+	}
+	else if (rank.equals("2") || rank.equals("4")){
+		return 25;
+	}
+	else if (rank.equals("7")){
+		return 20;
+	}
+	else if ((rank.equals("Jack")) || (rank.equals("Queen")) || (rank.equals("King"))){
+	return 10;
+	}
+	else if (rank.equals("Ace")){
+	return 1;
+	}
+	else{ //return the face value
+		return card.getRank();
+
+	}
+}
+
   /**
    * find a card to be played based on the DiscardHighPoints play strategy
    * @param lastDiscard the topmost card of the discard pile
@@ -22,7 +46,7 @@ public class DiscardHighPoints extends Player {
         //if suit is diff and it is a high point card, it qualifies as a highPointSuitChange card
         //we should return the highPointSuitChange card right away
         //suppose HighPointCard >= 10;
-        if(!thisCard.getSuit().equals(lastDiscard.getSuit()) && (thisCard.getPointValue() >= 10)) {
+        if(!thisCard.getSuit().equals(lastDiscard.getSuit()) && (getPointValue(thisCard) >= 10)) {
           return thisCard;
         }
         //set first valid card to highPointCard to start
@@ -30,7 +54,7 @@ public class DiscardHighPoints extends Player {
 			highPointCard = thisCard;
 		}
 		// check if it has a higher point value than current highPointCard
-        if(thisCard.getPointValue() > highPointCard.getPointValue()){
+        if(getPointValue(thisCard) > getPointValue(highPointCard)){
           highPointCard = thisCard;
         }
       }
