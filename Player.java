@@ -128,7 +128,7 @@ public abstract class Player{
 	}
 	
 	
-	/* play a card  */
+	/* play a card 
 	public abstract boolean play(DiscardPile       discardPile, 
 	                             Stack<Card>       drawPile, 
 										          	ArrayList<Player> players);
