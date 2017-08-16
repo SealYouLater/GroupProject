@@ -36,7 +36,7 @@ public class HamperLeader extends Player
     for (int i = 0; i < players.size(); i++){
       Player tempPlayer = players.get(i);
       if (this == tempPlayer){
-        nextPlayer = i+1;
+        nextPlayer = (i+1) % players.size();
       }
       if (i == 0 || tempPlayer.getSizeOfHand() < leader.getSizeOfHand() ){
         leader = players.get(i);
