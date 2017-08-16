@@ -79,6 +79,7 @@ public class DiscardHighPoints extends Player {
       //if the player's hand is empty, we win! return true
       discardPile.add(toPlay);
       hand.remove(toPlay);
+      
       // if the hand is empty we won!
       if(hand.isEmpty()){
         return true;
@@ -98,6 +99,7 @@ public class DiscardHighPoints extends Player {
     if(isValid(discardPile, toPlay)) {
      hand.remove(toPlay);
      discardPile.add(toPlay);
+     break;
     }
    }
   }
