@@ -77,4 +77,5 @@ public class DiscardHighPoints extends Player {
     //if we get here we must have at least one card in our hand
     return false;
   }
+
 }
