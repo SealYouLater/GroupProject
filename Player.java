@@ -8,15 +8,32 @@ public abstract class Player{
 		return hand.size();
 	}
 	
+	public int countPoints() {
+		int points = 0;
+		for (int i = 0; i < getSizeOfHand(); i++) {
+			points += hand.get(i).getRank();
+		}
+		return points;
+	}
+	
 	/*
 	 * The only power card to be handled is the 2
-	 * Checks the top of discardPile and if it is 2, player draws 2 cards.
+	 * Checks the top of discardPile and if it is 2, player
 	 */
-	public void handlePowerCard(Stack<Card> drawPile, DiscardPile discardPile) {
+	public boolean handlePowerCard(Stack<Card> drawPile, DiscardPile discardPile) {
 		if (discardPile.top().getRank() == 2) {
-			drawCard(drawPile);
-			drawCard(drawPile);
+			if (!drawPile.isEmpty()) {
+				drawCard(drawPile);
+			} else {
+				return true;
+			}
+			if (!drawPile.isEmpty()) {
+				drawCard(drawPile);
+			} else {
+				return true;
+			}
 		}
+		return false;
 	}
 	
 	/*
@@ -51,6 +68,7 @@ public abstract class Player{
 	public Card drawUntilValid(Stack<Card> drawPile, DiscardPile discardPile) {
 		while (!drawPile.isEmpty()) {
 			Card newCard = drawPile.pop();
+			System.out.println("  Drawing card: " + newCard);
 			if (isValid(discardPile, newCard)) {
 				return newCard;
 			} else {
@@ -79,7 +97,9 @@ public abstract class Player{
 	 * Draw a card from the drawPile and add it to the player's hand
 	 */
 	public void drawCard(Stack<Card> drawPile){
-		this.hand.add(drawPile.pop());
+		Card newCard = drawPile.pop();
+		this.hand.add(newCard);
+		System.out.println("  Drawing card: " + newCard);
 	}
 	
 	
@@ -96,49 +116,3 @@ public abstract class Player{
 	
 	
 }
-
-
-
-
-//////////////////////////OLD PLAYER CLASS////////////////////////////
-/*import java.util.ArrayList;
-import java.util.Stack;
-
-public abstract class Player{
-	protected ArrayList<Card> hand;
-	
-	public int getSizeOfHand(){
-		return hand.size();
-	}
-	
-	
-	
-	public static boolean isValid(DiscardPile discardPile, Card playedCard){
-		Card lastPlayedCard = discardPile.top();
-		
-		if(lastPlayedCard.getSuit().equals(playedCard.getSuit()) ||
-			lastPlayedCard.getRank() == playedCard.getRank()||
-			playedCard.getRank == 8){ return true; }
-			
-			else {return false;}
-	}
-	
-	public void drawCard(Stack<Card> drawPile){
-		this.hand.add(drawPile.pop());
-	}
-	
-	
-	/* play a card 
-	public abstract boolean play(DiscardPile       discardPile, 
-	                             Stack<Card>       drawPile, 
-										          	ArrayList<Player> players);
-	// return true if player wins game by playing last card
-	// returns false otherwise
-	// side effects: plays a card to top of discard Pile, possibly taking zero
-	//               or more cards from the top of the drawPile
-	//               card played must be valid card
-	// draws unless has power card, only takes one, if person has 1 card left they play a power card
-	
-	
-}"* GroupProject" 
-*/
