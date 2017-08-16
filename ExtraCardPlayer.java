@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 
 public class ExtraCardPlayer extends Player{
-	private static int rounds = 0;
+	
 	
 	public ExtraCardPlayer(Card[] cards){this.hand = new ArrayList<Card>(Arrays.asList(cards));}
  
@@ -14,8 +14,13 @@ public class ExtraCardPlayer extends Player{
 	public boolean play(DiscardPile discardPile, Stack<Card> drawPile, ArrayList<Player> players){
 		//assume for testing that ExtraCardPlayer is always in position [0] therefore next player is always [1] for purpose of seeing number of cards remaining
 		
+		//print current hand for testing
+		for(Card c : hand){
+			System.out.print(" " + c.toString());
+		}
+		System.out.println();
 		//increment rounds to determine if drawing more than once
-		rounds++;
+		
 		
 		//track top card in discard pile
 		Card lastPlayedCard = discardPile.top();
@@ -25,16 +30,14 @@ public class ExtraCardPlayer extends Player{
 		//variable to make sure the drawn card is allowed to be played
 		boolean validPlay = false;
 		
-		//variable for tracking the location of a valid power card
-		int validCardLocation = -1;
 		
 		//iterate through hand and search for a power card
 		
 		for(Card c: this.hand){
 			if(isPowerCard(c) && isValid(discardPile, c)){
+				System.out.println("Found a valid power card ln 33");
 				hasPower = true;
 				validPlay = true;				
-				validCardLocation = this.hand.indexOf(c);
 				break;
 			}
 			else{
@@ -96,7 +99,6 @@ public class ExtraCardPlayer extends Player{
 		else{
 			return false;
 		}
-	}					
-  
+	}
 }
 		
