@@ -74,7 +74,7 @@ public class MindTheEights extends Player
     {
       for (int k = 0; k < this.hand.size() ; k++)
       {
-        if (isValid(discardPile, this.hand.get(k)))
+        if (this.hand.get(k).getRank() == discardPile.top().getRank() || this.hand.get(k).getSuit() == discardPile.top().getSuit())
         {
           discardPile.add(this.hand.remove(k)); 
         }
