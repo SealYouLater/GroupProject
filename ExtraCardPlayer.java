@@ -70,7 +70,8 @@ public class ExtraCardPlayer extends Player{
 			for(Card c : hand){
 				if(isValid(discardPile, c)){
 					discardPile.add(c);
-					this.hand.remove(c);
+					int cardLocation = this.hand.indexOf(c);
+					this.hand.remove(cardLocation);
 					return true;
 				}
 			}
